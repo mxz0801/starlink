@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 import {
     Form,
-    Input,
     Button,
     InputNumber
 } from 'antd';
@@ -29,19 +28,27 @@ class SatSettingForm extends Component {
                 </Form.Item>
 
                 <Form.Item label="Latitude(degrees)">
-                    {(<InputNumber min={-180} max={180} placeholder="Please enter a Latitude" style={{ width: "100%" }}/>)}
+                    {getFieldDecorator('latitude',{
+                        rules: [{required: true, message: 'Please input your Latitude!'}]
+                    })(<InputNumber min={-180} max={180} placeholder="Please enter a Latitude" style={{ width: "100%" }}/>)}
                 </Form.Item>
 
                 <Form.Item label="Elevation(meters)">
-                    {(<InputNumber min={-413} max={8850} placeholder="Please input your Elevation" style={{ width: "100%" }}/>)}
+                    {getFieldDecorator('elevation',{
+                        rules: [{required: true, message: 'Please input your Elevation!'}]
+                    })(<InputNumber min={-413} max={8850} placeholder="Please input your Elevation" style={{ width: "100%" }}/>)}
                 </Form.Item>
 
                 <Form.Item label="Altitude(degrees)">
-                    {(<InputNumber min={0} max={90} placeholder="Please input your Altitude" style={{ width: "100%" }}/>)}
+                    {getFieldDecorator('altitude',{
+                        rules: [{required: true, message: 'Please input your Altitude!'}]
+                    })(<InputNumber min={0} max={90} placeholder="Please input your Altitude" style={{ width: "100%" }}/>)}
                 </Form.Item>
 
                 <Form.Item label="Duration(secs)">
-                    {(<InputNumber min={0} max={90} placeholder="Please input Duration" style={{ width: "100%" }}/>)}
+                    {getFieldDecorator('duration',{
+                        rules: [{required: true, message: 'Please input your Duration!'}]
+                    })(<InputNumber min={0} max={90} placeholder="Please input Duration" style={{ width: "100%" }}/>)}
                 </Form.Item>
 
                 <Form.Item className="show-nearby">

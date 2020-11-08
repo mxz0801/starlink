@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import SatSetting from "./SatSetting";
 import SatelliteList from "./SatelliteList";
 import axios from 'axios';
+import WorldMap from './WorldMap';
 
 import {NEARBY_SATELLITE,SAT_API_KEY,STARLINK_CATEGORY} from "../constants";
 
@@ -11,7 +12,7 @@ class Main extends Component {
         this.state = {
             satInfo:null,
             setting:null,
-            isLoadingList:false
+            isLoadingList:true
         }
     }
 
@@ -37,27 +38,38 @@ class Main extends Component {
         const url = `/api/${NEARBY_SATELLITE}/${latitude}/${longitude}/${elevation}/${altitude}/${STARLINK_CATEGORY}/&apiKey=${SAT_API_KEY}`;
 
         //step3: send setting to trigger isLoading
+        this.setState({
+            isLoading:true
+        })
 
         //step4: make ajax call
         axios.get(url)
             .then(response => {
                 console.log(response)
+                this.setState({
+                    satInfo: response.data,
+                    isLoading: false
+                })
             })
             .catch(error => {
                 console.log('err in fetch satellite ->', error.message)
+                this.setState({
+                    isLoading: false
+                })
             })
 
     }
 
     render() {
+        const { satInfo, isLoading} = this.state;
         return (
             <div className="main">
                 <div className="left-side">
                     <SatSetting onShow ={this.showNearbySatellite}/>
-                    <SatelliteList/>
+                    <SatelliteList satInfo={satInfo} isLoad={isLoading}/>
                 </div>
                 <div className="right-side">
-                    right
+                    <WorldMap/>
                 </div>
             </div>
         );
