@@ -17,7 +17,7 @@ class SatelliteList extends Component {
                     <Button className="sat-list-btn"
                             type={"primary"}
                             disabled={selected.length === 0}
-                            //onClick={this.onShowSatMap}
+                            onClick={this.onShowSatMap}
                             size="large">Track on the map</Button>
                 </div>
 
@@ -91,7 +91,9 @@ class SatelliteList extends Component {
     }
 
     onShowSatMap =() => {
-        this.props.onShowSatMap(this.state.selected);
+        // const {selected} = this.state;
+        // this.props.onShowSatMap(selected);
+        this.props.onShowMap(this.state.selected);
     }
 }
 

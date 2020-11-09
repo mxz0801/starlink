@@ -12,6 +12,7 @@ class Main extends Component {
         this.state = {
             satInfo:null,
             setting:null,
+            satList:null,
             isLoadingList:true
         }
     }
@@ -60,16 +61,25 @@ class Main extends Component {
 
     }
 
+    showMap = (selected) => {
+        this.setState(preState => ({
+            ...preState,
+            satList: [...selected]
+        }))
+    }
+
+
     render() {
-        const { satInfo, isLoading} = this.state;
+        const { satInfo, isLoading, satList , setting}  = this.state;
         return (
             <div className="main">
                 <div className="left-side">
                     <SatSetting onShow ={this.showNearbySatellite}/>
-                    <SatelliteList satInfo={satInfo} isLoad={isLoading}/>
+                    <SatelliteList satInfo={satInfo} isLoad={isLoading} onShowMap={this.showMap}/>
                 </div>
                 <div className="right-side">
-                    <WorldMap/>
+                    <WorldMap satData={satList} observerData={setting} />
+
                 </div>
             </div>
         );
