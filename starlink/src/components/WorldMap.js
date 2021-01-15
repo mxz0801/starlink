@@ -1,16 +1,20 @@
-import React, {Component} from 'react';
-import { feature } from 'topojson-client';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
 import { Spin } from "antd";
-import { geoKavrayskiy7 } from 'd3-geo-projection';
-import { geoGraticule, geoPath } from 'd3-geo';
-import { select as d3Select } from 'd3-selection';
-import { timeFormat as d3TimeFormat } from "d3-time-format";
+import { feature } from "topojson-client";
+import { geoKavrayskiy7 } from "d3-geo-projection";
+import { geoGraticule, geoPath } from "d3-geo";
+import { select as d3Select } from "d3-selection";
 import { schemeCategory10 } from "d3-scale-chromatic";
 import * as d3Scale from "d3-scale";
+import { timeFormat as d3TimeFormat } from "d3-time-format";
 
 
-import { WORLD_MAP_URL ,SATELLITE_POSITION_URL,SAT_API_KEY} from "../constants";
+import {
+    WORLD_MAP_URL,
+    SATELLITE_POSITION_URL,
+    SAT_API_KEY
+} from "../constants";
 
 const width = 960;
 const height = 600;
